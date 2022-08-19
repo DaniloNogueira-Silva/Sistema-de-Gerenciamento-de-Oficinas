@@ -1,0 +1,67 @@
+<%- include ('../../partials/header.ejs') %>
+
+<%- include ('../../partials/navbar.ejs') %>
+<!-- MODELO DE CRUD -->
+
+<div class="page-content p-5" id="content">
+
+    <div class="container">
+    <hr>
+    <h2>Carros</h2>
+
+    <a href="/admin/cars/new" id="botao" class=" btn btn-success">Criar novo carro</a>
+    <hr>
+
+    <table class="table table-bordered"> <!--Class para table do bootstrap-->
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Ano</th>
+                <th>Cor</th>
+                <th>Placa</th>
+                <th>Dono</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <% cars.forEach(cars => { %>
+                <tr>
+                    <td><%= cars.id %></td>
+                    <td><%= cars.marca %></td>
+                    <td><%= cars.modelo %></td>
+                    <td><%=  cars.ano %></td>
+                    <td><%=  cars.cor %></td>
+                    <td><%=  cars.placa %></td>
+                    <td><%= cars.client.name %></td>
+                    <td>
+
+                        <a href="/admin/cars/edit/<%= cars.id %>" class="btn btn-success">Editar</a>
+
+                        <form method="post" action="/cars/delete" style="display: inline;" onsubmit="confirmDelete(event, this)">
+                            <input type="hidden" name="id" value="<%= cars.id %>">
+                            <button class="btn btn-success">Deletar</button>
+                        </form> 
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+</div>
+
+
+<%- include ('../../partials/footer.ejs') %>
+<script>
+
+    function confirmDelete(event, form){ //event é basicamente o ato de apertar o botão
+        event.preventDefault(); // preventDefault() = vai impedir  formulario de ser submetido
+        var decision = confirm("Você quer deletar esse carro?");
+        if(decision){
+            form.submit(); // se apertar ok vai apagar o conteúdo
+        }
+    }
+
+</script>

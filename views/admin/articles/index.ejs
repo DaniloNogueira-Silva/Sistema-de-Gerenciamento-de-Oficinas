@@ -1,0 +1,60 @@
+<%- include ('../../partials/header.ejs') %>
+
+<%- include ('../../partials/navbar.ejs') %>
+<!-- MODELO DE CRUD -->
+
+<div class="page-content p-5" id="content">
+
+    <div class="container">
+    <hr>
+    <h2>Orçamentos</h2>
+
+    <a href="/admin/articles/new" class="btn btn-primary">Criar novo orçamento</a>
+    <hr>
+
+    <table class="table"> <!--Class para table do bootstrap-->
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Carro</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% articles.forEach(article =>{ %> <!--VAI PREENHCER A TABELA COM OS DADOS DO DB-->
+                <tr>
+                    <th><%= article.id %></th>
+                    <th><%= article.client %></th>
+                    <th><%= article.car %></th>
+
+                    <th>
+                        <a href="/articles/<%= article.id %>" class="btn btn-success">Ver Orçamento</a>
+                        <a href="/articles/edit/<%= article.id %>" class="btn btn-success">Editar</a>
+
+
+                        <form method="post" action="/articles/delete" style="display: inline;" onsubmit="confirmDelete(event, this)">
+                            <input type="hidden" name="id" value="<%= article.id %>">
+                            <button class="btn btn-success">Deletar</button>
+                        </form>
+                    </th>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+</div>
+
+
+<%- include ('../../partials/footer.ejs') %>
+<script>
+ 
+    function confirmDelete(event, form){ //event é basicamente o ato de apertar o botão
+        event.preventDefault(); // preventDefault() = vai impedir  formulario de ser submetido
+        var decision = confirm("Você quer deletar esse orçamento?");
+        if(decision){
+            form.submit(); // se apertar ok vai apagar o conteúdo
+        }
+    }
+
+</script>

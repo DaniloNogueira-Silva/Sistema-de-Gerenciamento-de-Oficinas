@@ -1,0 +1,60 @@
+<%- include ('../../partials/header.ejs') %>
+<%- include ('../../partials/navbar.ejs') %>
+
+<div class="page-content p-5" id="content">
+
+    <div class="container">
+    <hr>
+    <h2>Usuários</h2>
+    <a href="/admin/users/create" class="btn btn-success">Criar novo usuário</a>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach(user=>{ %>
+                <tr>
+                    <td><%= user.id %></td>
+                    <td><%= user.name %></td>
+                    <td><%= user.email %></td>
+
+                    <td>
+                        <a href="/admin/users/edit/<%= user.id %>" class="btn btn-sucess">Editar</a>
+
+                        <form method="post" action="/users/delete" style="display: inline;" onsubmit="confirmDelete(event, this)">
+                        <input type="hidden" name="id" value="<%= user.id %>">
+                        <button class="btn btn-sucess">Deletar</button>
+                        </form> 
+                    </td>
+                    
+
+                    
+
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+
+</div>
+
+
+
+<%- include ('../../partials/footer.ejs') %>
+<script>
+ 
+    function confirmDelete(event, form){ //event é basicamente o ato de apertar o botão
+        event.preventDefault(); // preventDefault() = vai impedir  formulario de ser submetido
+        var decision = confirm("Você quer deletar essa categoria?");
+        if(decision){
+            form.submit(); // se apertar ok vai apagar o conteúdo
+        }
+    }
+
+</script>

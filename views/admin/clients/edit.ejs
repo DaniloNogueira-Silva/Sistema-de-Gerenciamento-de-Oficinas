@@ -1,0 +1,37 @@
+<%- include ('../../partials/header.ejs') %>
+
+<%- include ('../../partials/navbar.ejs') %>
+<!--FORMULÁRIO PARA  EDITAR UM CLIENTE-->
+<div class="page-content p-5" id="content">
+
+    <div class="container">
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <h2>Editar Cliente</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" action="/clients/update">
+                <br>
+                <input type="hidden" name="id" value="<%= clients.id %>">
+                <input class="form-control" type="text" name="name" placeholder="Defina o nome" value="<%= clients.name %>">
+                <br>
+                <input class="form-control" type="number" name="age" placeholder="Defina a idade" value="<%= clients.age %>">
+                <br>
+                <input class="form-control" type="text" name="cpf" placeholder="Defina o cpf" value="<%= clients.cpf %>">
+                <br>
+                <input class="form-control" type="text" name="adress" placeholder="Defina o endereço" value="<%= clients.adress %>">
+                <br>
+                <input class="form-control" type="number" name="phone" placeholder="Defina o celular" value="<%= clients.phone %>">
+                <br>
+                <button class="btn btn-success">Atualizar</button>
+            </form>
+        </div>
+        
+    </div>
+    
+</div>
+</div>
+
+
+<%- include ('../../partials/footer.ejs') %></div>

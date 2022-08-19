@@ -1,0 +1,47 @@
+<%- include ('../../partials/header.ejs') %>
+<%- include("../../partials/navbar.ejs") %>
+
+
+<div class="page-content p-5" id="content">
+
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header">
+                    Edição de Orçamento
+            </div>
+            <div class="card-body">
+                <form method="post" action="/articles/update">
+                    <input  type="hidden" name="id" value="<%- article.id %>">
+                    <input class="form-control" type="text" name="client" placeholder="Nome do proprietário " value="<%- article.client %>">
+                    <br>
+                    <input class="form-control" type="text" name="car" placeholder="Nome do Carro" value="<%- article.car %>">
+                    <br>
+                    <textarea name="body" id="article" class="form-control" placeholder="Escreva aqui"></textarea>
+                    <br>
+                    <button type="submit" class="btn btn-success btn-block">EDITAR ORÇAMENTO</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div  id="ccontent" style="display: none"><%- article.body %></div>
+
+
+
+<%- include ('../../partials/footer.ejs') %>
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+
+    tinymce.init({
+        selector: "#article",
+        plugins: [
+            'adlist autolink link image lists print preview hr searchreplace save table paste'
+        ],
+        init_instance_callback: ()=>{
+            tinymce.get("article").setContent($("#ccontent").html())
+        }
+    })
+
+</script>

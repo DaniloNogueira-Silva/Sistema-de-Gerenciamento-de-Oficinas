@@ -1,0 +1,39 @@
+<%- include ('../../partials/header.ejs') %>
+
+<%- include ('../../partials/navbar.ejs') %>
+<!--FORMULÁRIO PARA SALVAR UM CARRO NOVA-->
+
+<div class="page-content p-5" id="content">
+
+    <div class="container">
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <h2>Novo Carro</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" action="/cars/save">
+                <input class="form-control" type="text" name="marca" placeholder="Qual a marca?">
+                <br>
+                <input class="form-control" type="text" name="modelo" placeholder="Qual o modelo?">
+                <br>
+                <input class="form-control" type="number" name="ano" placeholder="Qual o ano?">
+                <br>
+                <input class="form-control" type="text" name="cor" placeholder="Qual a cor?">
+                <br>
+                <input class="form-control" type="text" name="placa" placeholder="Qual a placa?">
+                <br>
+                <select name="client" class="form-control">
+                    <% clients.forEach((client)=>{ %>
+                        <option value="<%= client.id %>"><%= client.name %></option>
+                    <% }) %>
+                </select>
+                <br>
+                <button class="btn btn-success">Cadastrar</button>
+            </form>
+        </div>
+        
+    </div>
+    
+</div>
+</div>

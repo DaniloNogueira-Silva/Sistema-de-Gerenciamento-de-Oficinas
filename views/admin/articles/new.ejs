@@ -1,0 +1,42 @@
+<%- include ('../../partials/header.ejs') %>
+<%- include("../../partials/navbar.ejs") %>
+
+
+<div class="page-content p-5" id="content">
+
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header">
+                    Criação de Orçamento
+            </div>
+            <div class="card-body">
+                <form method="post" action="/articles/save">
+                    <input class="form-control" type="text" name="client" placeholder="Nome do proprietário ">
+                    <br>
+                    <input class="form-control" type="text" name="car" placeholder="Nome do Carro">
+                    <br>
+                    <textarea name="body" id="article" class="form-control" placeholder="Escreva aqui"></textarea>
+                    <br>
+                    <button type="submit" class="btn btn-success btn-block">CRIAR ORÇAMENTO</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<%- include ('../../partials/footer.ejs') %>
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+
+    tinymce.init({
+        selector: "#article",
+        plugins: [
+            'adlist autolink link image lists print preview hr searchreplace save table paste'
+        ]
+    })
+
+</script>
