@@ -28,6 +28,7 @@ router.post("/users/create", (req, res)=>{
     let email = req.body.email
     let password = req.body.password
 
+
     //Para conferir se o email já está cadastrado
     User.findOne({where:{ email:email}}).then(user =>{
         if(user == undefined){
@@ -43,7 +44,7 @@ router.post("/users/create", (req, res)=>{
                 password: hash
 
             }).then(()=>{
-                res.redirect("/")
+                alert("a")
             }).catch((err) =>{
                 res.redirect("/")
             })
